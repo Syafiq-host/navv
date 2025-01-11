@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keberangkatan Bus - Kunjungan Industri</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: white;
+        }
+        
+        .header__logo {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header__logo {
+                display: flex;
+                align-items: center;
+                /* Sejajarkan secara vertikal */
+                text-decoration: none;
+                /* Hilangkan garis bawah pada link */
+                color: white;
+                /* Warna teks */
+            }
+            .header__logo-img {
+                max-height: 50px;
+                /* Sesuaikan tinggi logo */
+                margin-right: 2px;
+                /* Jarak antara logo dan teks */
+            }
+            .header__logo-text {
+                font-size: 25px;
+                font-family: 'Clicker Script', cursive;
+                /* Sesuaikan ukuran teks */
+            }
+        }
+        /* Gaya umum untuk ikon */
+        
+        .social-ikon {
+            display: none;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .social-ikon {
+                display: flex;
+                /* Membuat elemen sejajar horizontal */
+                gap: 15px;
+                /* Jarak antar ikon */
+            }
+            .social-icone {
+                /* Warna awal ikon */
+                font-size: 21px;
+                /* Ukuran ikon */
+                text-decoration: none;
+                /* Hilangkan garis bawah (untuk tautan) */
+                transition: color 0.3s ease;
+                /* Animasi perubahan warna */
+            }
+            /* Gaya saat di-hover */
+        }
+        
+        .social-icons {
+            position: absolute;
+            /* Menggunakan absolute agar posisi tetap */
+            top: 40.3%;
+            /* Posisi vertikal dari atas */
+            left: 20px;
+            /* Posisi horizontal di sisi kiri */
+            transform: translateY(-50%);
+            /* Menjaga posisi vertikal tetap di tengah */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            /* Menempatkan di atas elemen lainnya */
+        }
+        /* Styling untuk ikon sosial */
+        
+        .social-icon {
+            margin: 6px 0;
+            /* Jarak antar ikon sosial */
+            font-size: 2em;
+            /* Ukuran ikon */
+            text-decoration: none;
+            /* Menghilangkan underline */
+            transition: transform 0.3s ease, color 0.3s ease;
+            /* Warna ikon sosial default */
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+            /* Warna hover bisa ditambahkan di sini jika diperlukan */
+        }
+        
+        @media screen and (max-width: 768px) {
+            .social-icons,
+            .social-icon {
+                display: none;
+            }
+        }
+        
+        .overview-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .overview-content h2 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, #3c0782, #4682B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            ;
+        }
+        
+        .overview-content p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        /* Schedule Section */
+        /* Schedule Section Styling */
+        
+        .schedule-section {
+            background-color: #e0f7fa;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .schedule-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            /* Tambahkan padding untuk margin kanan-kiri */
+        }
+        
+        .schedule-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        
+        .schedule-table th,
+        .schedule-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        
+        .schedule-table th {
+            background: #4b0e9b;
+            color: white;
+        }
+        /* Responsiveness for Smaller Devices */
+        
+        @media (max-width: 768px) {
+            .schedule-table th,
+            .schedule-table td {
+                font-size: 0.9rem;
+                /* Kurangi ukuran font */
+            }
+            .schedule-container h2 {
+                font-size: 1.3em;
+                text-align: center;
+                margin-left: 10px;
+            }
+        }
+        /* Destination Section */
+        
+        .destination-section {
+            padding: 2rem;
+            background: linear-gradient(90deg, #4b0e9b, #4682B4);
+            color: white;
+            text-align: center;
+        }
+        
+        .destination-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .destination-list {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .destination-item {
+            text-align: center;
+            width: 30%;
+        }
+        
+        .destination-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .destination-item h3 {
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .destination-item p {
+            font-size: 1.1rem;
+            color: white;
+        }
+        /* Contact Section */
+        
+        @media (max-width: 768px) {
+            .destination-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .destination-item {
+                width: 80%;
+                margin-bottom: 1rem;
+            }
+            .destination-item p {
+                text-align: left;
+            }
+            .overview-content h2 {
+                font-size: 1.3em;
+                margin-left: -15px;
+            }
+            .overview-content p {
+                text-align: left;
+                font-size: 1em;
+                padding-left: 20px;
+            }
+            .destination-container h2 {
+                font-size: 1.2rem;
+            }
+            .destination-item h3 {
+                text-align: left;
+                font-size: 1.2rem;
+                margin: 0;
+                padding: 0;
+            }
+            .destination-item p {
+                font-size: 1rem;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="header">
+
+        <a href="#" class="header__logo" style="background: linear-gradient(90deg, #3c0782, #4682B4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">
+            <img src="logo.png" alt="Logo" class="header__logo-img">
+            <span class="header__logo-text">Syafiq</span>
+            <div class="social-ikon" style="margin-right: -60px;">
+                <a href="https://instagram.com" target="_blank" class="social-icone" style="color:#e4405eda; text-decoration: none; font-size: 1.5rem;" onmouseover="this.style.background='linear-gradient(45deg, #e7af16, #fa7e1e, #d62976, #962fbf, #4f5bd5)';
+                             this.style.webkitBackgroundClip='text'; 
+                             this.style.webkitTextFillColor='transparent';" onmouseout="this.style.background='none';
+                            this.style.webkitBackgroundClip='initial'; 
+                            this.style.webkitTextFillColor='initial';">
+                    <i class='bx bxl-instagram'></i>
+                </a>
+
+                <a href="https://whatsapp.com" target="_blank" class="social-icone" style="color:#075e54cf;" onmouseover="this.style.color='#1da90a';" onmouseout="this.style.color='#075e54cf';">
+                    <i class='bx bxl-whatsapp'></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" class="social-icone" style="color:#1351d7d7;" onmouseover="this.style.color='#3B5998';" onmouseout="this.style.color='#1351d7d7';">
+                    <i class='bx bxl-facebook'></i>
+                </a>
+            </div>
+
+        </a>
+
+
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+        <nav class="nav" id="nav-menu">
+            <div class="nav__content bd-grid">
+                <a href="#" class="nav__perfil">
+                    <div class="nav__img">
+                        <img src="logo1.jpg" alt="">
+                    </div>
+                    <div class="texts">
+                        <span class="nav__name" style="background: linear-gradient(90deg, #4b0e9b, #4682B4);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;">Syafiq</span>
+                    </div>
+                </a>
+                <div class="nav__menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="index.html" class="nav__link active" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">Home</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#overview" class="nav__link active" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">Profil</a>
+
+
+                        </li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link dropdown__link" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">About <i class="bx bx-chevron-down dropdown__icon"></i></a>
+
+                            <ul class="dropdown__menu">
+                                <li class="dropdown__item"><a href="https://syafiq-host.github.io/-web/" class="nav__link" style="color: black;">About me</a></li>
+                                <li class="dropdown__item"><a href="#schedule" class="nav__link" style="color: black;">Keberangkatan</a></li>
+                                <li class="dropdown__item"><a href="unikom.html" class="nav__link" style="color: black;">UNIKOM AND PT CALORINE</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Overview Section -->
+    <section class="overview-section" id="overview">
+        <div class="overview-content">
+            <h2>Keberangkatan Bus Kunjungan Industri</h2>
+            <p>
+                Titik kumpul di SMK Informatika Cirebon pada jam 4 pagi. Keberangkatan bus untuk kunjungan industri SMK Informatika Cirebon ke PT Clorine Digital, Universitas UNIKOM, dan Cihampelas Walk.perjalanan nya seru, penuh wawasan, dan pengalaman berharga bersama
+                para siswa dan pengajar dalam menjelajahi dunia industri serta dunia pendidikan yang inovatif!
+            </p>
+
+
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule-section" id="schedule">
+        <div class="schedule-container">
+            <h2>Jadwal Keberangkatan</h2>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Hari</th>
+                        <th>Waktu Keberangkatan</th>
+                        <th>Tujuan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hari Selasa</td>
+                        <td>07:30 WIB</td>
+                        <td>Universitas UNIKOM - Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>Hari Selasa</td>
+                        <td>13:00 WIB</td>
+                        <td>PT Clorine Digital - Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>Hari Selasa</td>
+                        <td>15:00 WIB</td>
+                        <td>Ciwalk - Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>Hari Selasa</td>
+                        <td>07:00 WIB</td>
+                        <td>Cirebon - SMK AL IRSYAD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Destination Section -->
+    <section class="destination-section" id="destination">
+        <div class="destination-container">
+            <h2 style=" text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">Destinasi Kunjungan Industri</h2>
+            <div class="destination-list">
+                <div class="destination-item">
+                    <img src="cihampelas.jpg" alt="Bandung" class="destination-img">
+                    <h3>Universitas UNIKOM</h3>
+                    <p>Tujuan awal: Universitas UNIKOM adalah sebuah perguruan tinggi yang terkenal dengan kualitas pendidikan di bidang teknologi dan informatika, mencetak lulusan yang siap bersaing di dunia industri digital dan teknologi.</p>
+
+
+                </div>
+                <div class="destination-item">
+                    <img src="cihampelas.jpg" alt="Jakarta" class="destination-img">
+                    <h3>PT Clorine Digital</h3>
+                    <p>Tujuan selanjutnya PT Clorine Digital merupakan tempat di mana para profesional di bidang teknologi berkumpul untuk mengembangkan solusi digital inovatif dan menyongsong masa depan teknologi yang lebih canggih.</p>
+
+                </div>
+                <div class="destination-item">
+                    <img src="cihampelas.jpg" alt="Surabaya" class="destination-img">
+                    <h3>Cihampelas Walk</h3>
+                    <p>Tujuna AKhir adalah Cihampelas Walk (Ciwalk) adalah pusat perbelanjaan dan hiburan yang terkenal di Bandung, menawarkan berbagai toko, restoran, dan hiburan yang menarik bagi pengunjung.</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

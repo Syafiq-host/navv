@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syafiq | Kunjungan</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .custom-slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            /* Sesuaikan tinggi gambar */
+            overflow: hidden;
+            margin-top: 0;
+            border-radius: 10px;
+            object-fit: contain;
+        }
+        /* Slide Items */
+        
+        .custom-slide {
+            display: none;
+            /* Default: Hidden */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            box-sizing: border-box;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .custom-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Fade Animation */
+        
+        .custom-fade {
+            animation: fadeEffect 1.5s;
+        }
+        /* Dots Navigation */
+        
+        .custom-dots-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .custom-dot {
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            background-color: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        button.prev,
+        button.next {
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            background: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 1;
+            border-radius: 50%;
+        }
+        
+        button.prev {
+            left: 10px;
+            transform: translateY(-50%);
+        }
+        
+        button.next {
+            right: 10px;
+            transform: translateY(-50%);
+        }
+        /* Active Dot */
+        
+        .custom-dot.active {
+            background: linear-gradient(90deg, #4b0e9b, #4682B4);
+        }
+        /* Fade Effect for transition */
+        
+        @keyframes fadeEffect {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        /* Styling untuk tombol prev/next */
+        /* Fade Keyframes */
+        
+        @keyframes fadeEffect {
+            from {
+                opacity: 0.4;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .custom-slideshow-container {
+                position: relative;
+                width: 100%;
+                height: 30vh;
+                /* Sesuaikan tinggi gambar */
+                overflow: hidden;
+                margin-top: -2.5rem;
+                border-radius: 10px;
+            }
+        }
+        
+        @media (max-width: 450px) {
+            .custom-slideshow-container {
+                position: relative;
+                width: 100%;
+                height: 25vh;
+                /* Sesuaikan tinggi gambar */
+                overflow: hidden;
+                margin-top: -2.5rem;
+                border-radius: 15px;
+            }
+        }
+        
+        .header__logo {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header__logo {
+                display: flex;
+                align-items: center;
+                /* Sejajarkan secara vertikal */
+                text-decoration: none;
+                /* Hilangkan garis bawah pada link */
+                color: white;
+                /* Warna teks */
+            }
+            .header__logo-img {
+                max-height: 50px;
+                /* Sesuaikan tinggi logo */
+                margin-right: 2px;
+                /* Jarak antara logo dan teks */
+            }
+            .header__logo-text {
+                font-size: 25px;
+                font-family: 'Clicker Script', cursive;
+                /* Sesuaikan ukuran teks */
+            }
+        }
+        /* Gaya umum untuk ikon */
+        
+        .social-ikon {
+            display: none;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .social-ikon {
+                display: flex;
+                /* Membuat elemen sejajar horizontal */
+                gap: 15px;
+                /* Jarak antar ikon */
+            }
+            .social-icone {
+                /* Warna awal ikon */
+                font-size: 21px;
+                /* Ukuran ikon */
+                text-decoration: none;
+                /* Hilangkan garis bawah (untuk tautan) */
+                transition: color 0.3s ease;
+                /* Animasi perubahan warna */
+            }
+            /* Gaya saat di-hover */
+        }
+        
+        .social-icons {
+            position: absolute;
+            /* Menggunakan absolute agar posisi tetap */
+            top: 40.3%;
+            /* Posisi vertikal dari atas */
+            left: 20px;
+            /* Posisi horizontal di sisi kiri */
+            transform: translateY(-50%);
+            /* Menjaga posisi vertikal tetap di tengah */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            /* Menempatkan di atas elemen lainnya */
+        }
+        /* Styling untuk ikon sosial */
+        
+        .social-icon {
+            margin: 6px 0;
+            /* Jarak antar ikon sosial */
+            font-size: 2em;
+            /* Ukuran ikon */
+            text-decoration: none;
+            /* Menghilangkan underline */
+            transition: transform 0.3s ease, color 0.3s ease;
+            /* Warna ikon sosial default */
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+            /* Warna hover bisa ditambahkan di sini jika diperlukan */
+        }
+        
+        @media screen and (max-width: 768px) {
+            .social-icons,
+            .social-icon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+
+        <a href="#" class="header__logo" style="background: linear-gradient(90deg, #3c0782, #4682B4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">
+            <img src="logo.png" alt="Logo" class="header__logo-img">
+            <span class="header__logo-text">Syafiq</span>
+            <div class="social-ikon" style="margin-right: -60px;">
+                <a href="https://instagram.com" target="_blank" class="social-icone" style="color:#e4405eda; text-decoration: none; font-size: 1.5rem;" onmouseover="this.style.background='linear-gradient(45deg, #e7af16, #fa7e1e, #d62976, #962fbf, #4f5bd5)';
+                             this.style.webkitBackgroundClip='text'; 
+                             this.style.webkitTextFillColor='transparent';" onmouseout="this.style.background='none';
+                            this.style.webkitBackgroundClip='initial'; 
+                            this.style.webkitTextFillColor='initial';">
+                    <i class='bx bxl-instagram'></i>
+                </a>
+
+                <a href="https://whatsapp.com" target="_blank" class="social-icone" style="color:#075e54cf;" onmouseover="this.style.color='#1da90a';" onmouseout="this.style.color='#075e54cf';">
+                    <i class='bx bxl-whatsapp'></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" class="social-icone" style="color:#1351d7d7;" onmouseover="this.style.color='#3B5998';" onmouseout="this.style.color='#1351d7d7';">
+                    <i class='bx bxl-facebook'></i>
+                </a>
+            </div>
+
+        </a>
+
+
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+        <nav class="nav" id="nav-menu">
+            <div class="nav__content bd-grid">
+                <a href="#" class="nav__perfil">
+                    <div class="nav__img">
+                        <img src="logo1.jpg" alt="">
+                    </div>
+                    <div class="texts">
+                        <span class="nav__name" style="background: linear-gradient(90deg, #4b0e9b, #4682B4);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;">Syafiq</span>
+                    </div>
+                </a>
+                <div class="nav__menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">Home</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="profil.html" class="nav__link active" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">Profil</a>
+
+
+                        </li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link dropdown__link" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">About <i class="bx bx-chevron-down dropdown__icon"></i></a>
+
+                            <ul class="dropdown__menu">
+                                <li class="dropdown__item"><a href="https://syafiq-host.github.io/-web/" class="nav__link" style="color: black;">About me</a></li>
+                                <li class="dropdown__item"><a href="profil.html#schedule" class="nav__link" style="color: black;">Keberangkatan</a></li>
+                                <li class="dropdown__item"><a href="unikom.html" class="nav__link" style="color: black;">UNIKOM AND PT CALORINE</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <main class="content">
+            <div data-aos="fade-right" data-aos-duration="700">
+                <h1>
+                    <span>Kali Ini Saya Dan 1 Angkatan 
+                        <span style="color: #4b0e9b;">Berkunjung Ke 
+                            <span id="typed-text" style="background: linear-gradient(90deg, #4b0e9b, #4682B4);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;">Bandung</span>
+                    </span>
+                    </span>
+                </h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate dicta adipisci doloremque vero corporis nobis?</p>
+                <a href="#profill" class="cta">lihat Sekarang</a>
+            </div>
+        </main>
+
+        <div class="bus">
+            <img src="bus.png" alt="">
+        </div>
+
+        <div class="social-icons">
+            <a href="https://instagram.com" target="_blank" class="social-icon" style="background: linear-gradient(45deg, #e7af16, #fa7e1e, #d62976, #962fbf, #4f5bd5); -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">
+                <i class='bx bxl-instagram'></i>
+            </a>
+            <a href="https://whatsapp.com" target="_blank" class="social-icon" style="color:#1da90a;">
+                <i class='bx bxl-whatsapp'></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="social-icon" style="color:#1351d7d7;" onmouseover="this.style.color='#3B5998';" onmouseout="this.style.color='#1351d7d7';">
+                <i class='bx bxl-facebook'></i>
+            </a>
+        </div>
+    </section>
+
+    <div class="custom-slideshow-container" id="slider">
+        <!-- Slide Items -->
+        <div class="custom-slide custom-fade">
+            <img src="bg.png" alt="Slide 1">
+        </div>
+        <div class="custom-slide custom-fade">
+            <img src="bg2.jpg" alt="Slide 2">
+        </div>
+        <div class="custom-slide custom-fade">
+            <img src="bandung.jpg" alt="Slide 3">
+        </div>
+        <div class="custom-slide custom-fade">
+            <img src="sd4.jpg" alt="Slide 4">
+        </div>
+        <div class="custom-slide custom-fade">
+            <img src="sd5.jpg" alt="Slide 5">
+        </div>
+        <div class="custom-slide custom-fade">
+            <img src="sd6.jpg" alt="Slide 6">
+        </div>
+        <div class="custom-slide custom-fade">
+            <img src="sd7.jpg" alt="Slide 7">
+        </div>
+        <div class="custom-slide custom-fade">
+            <img src="sd8.jpg" alt="Slide 8">
+        </div>
+
+        <!-- Prev and Next Buttons -->
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div>
+
+    <!-- Dots Navigation -->
+    <div class="custom-dots-container">
+        <span class="custom-dot" onclick="setSlideFromDot(0)"></span>
+        <span class="custom-dot" onclick="setSlideFromDot(1)"></span>
+        <span class="custom-dot" onclick="setSlideFromDot(2)"></span>
+        <span class="custom-dot" onclick="setSlideFromDot(3)"></span>
+        <span class="custom-dot" onclick="setSlideFromDot(4)"></span>
+        <span class="custom-dot" onclick="setSlideFromDot(5)"></span>
+        <span class="custom-dot" onclick="setSlideFromDot(6)"></span>
+        <span class="custom-dot" onclick="setSlideFromDot(7)"></span>
+    </div>
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <!-- Bagian kiri: Teks -->
+            <div class="about-text">
+                <h2 style="background: linear-gradient(90deg, #4b0e9b, #4682B4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;">Trip With BUS JB5</h2>
+                <p>
+                    SMK Informatika Al-Irsyad, sebuah sekolah dengan semangat belajar yang tinggi, baru-baru ini mengadakan kunjungan ke kota Bandung. Kami memilih perjalanan menggunakan bus yang nyaman untuk memberikan pengalaman perjalanan yang menyenangkan bagi seluruh
+                    siswa dan staf. Perjalanan ini bukan hanya tentang destinasi, tetapi juga tentang kebersamaan dan menikmati momen-momen perjalanan. Dengan fasilitas bus yang nyaman dan perjalanan yang aman, kami dapat memastikan bahwa setiap peserta
+                    merasa nyaman sepanjang perjalanan. Kunjungan ini bertujuan untuk memperluas wawasan siswa, belajar dari berbagai tempat di Bandung, dan tentunya untuk menguatkan hubungan antar sesama.
+                </p>
+            </div>
+            <!-- Bagian kanan: Gambar -->
+            <div class="about-image">
+                <img src="bus1.png" alt="Syafiq's Image">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let slideIndex = 0;
+        let slides = document.getElementsByClassName("custom-slide");
+        let dots = document.getElementsByClassName("custom-dot");
+        let slideInterval;
+
+        // Fungsi untuk menampilkan slide
+        function showSlides(n) {
+            if (n >= slides.length) {
+                slideIndex = 0;
+            }
+            if (n < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            // Sembunyikan semua slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            // Tampilkan slide aktif
+            slides[slideIndex].style.display = "block";
+
+            // Update dots
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            dots[slideIndex].classList.add("active");
+        }
+
+        // Fungsi untuk navigasi slide dengan tombol prev/next
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+            resetAutoSlide(); // Reset auto slide saat interaksi
+        }
+
+        // Fungsi untuk memilih slide berdasarkan dots
+        function setSlideFromDot(n) {
+            showSlides(slideIndex = n);
+            resetAutoSlide(); // Reset auto slide saat interaksi
+        }
+
+        // Fungsi untuk memulai slideshow otomatis
+        function startAutoSlide() {
+            slideInterval = setInterval(function() {
+                showSlides(slideIndex += 1);
+            }, 3000); // Slide berubah setiap 3 detik
+        }
+
+        // Fungsi untuk menghentikan slideshow otomatis (misal saat interaksi)
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        // Reset slideshow otomatis setelah interaksi
+        function resetAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        // Mulai slideshow otomatis saat halaman dimuat
+        startAutoSlide();
+
+        // Menambahkan fitur swipe (geser dengan jari)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById("slider").addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById("slider").addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX) {
+                plusSlides(1); // Geser ke kiri (berikutnya)
+            } else if (touchEndX > touchStartX) {
+                plusSlides(-1); // Geser ke kanan (sebelumnya)
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Inisialisasi Typed.js untuk elemen dengan id 'typed-text'
+            var options = {
+                strings: ["Bandung", "Bandung", "PT CALORINE", "Universitas Unikom"], // Teks yang ingin diketik
+                typeSpeed: 50, // Kecepatan mengetik (dalam milidetik)
+                backSpeed: 17, // Kecepatan menghapus (dalam milidetik)
+                backDelay: 1000, // Delay sebelum mulai menghapus
+                loop: true, // Mengulang animasi
+            };
+
+            var typed = new Typed("#typed-text", options); // Menginisialisasi dengan ID 'typed-text'
+        });
+    </script>
+    <script src="script.js" defer></script>
+    <!-- Masukkan link CDN Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+</body>
+
+</html>

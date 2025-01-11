@@ -1,0 +1,119 @@
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: none;
+    /* Hapus gambar background */
+    overflow: hidden;
+}
+
+.hero video {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero .content {
+    z-index: 1;
+    color: white;
+    text-align: center;
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.hero .content h1 {
+    font-size: 3.5em;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero .content h1 span {
+    color: #2696E9;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.hero .content p {
+    margin-bottom: 40px;
+    font-size: 1.2em;
+    line-height: 1.4;
+}
+
+.hero .content .cta {
+    background: #fff;
+    padding: 10px 20px;
+    color: #1680AC;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.media-icons {
+    z-index: 1;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.media-icons a {
+    margin: 5px 0;
+    color: white;
+    font-size: 1.6em;
+    transition: transform 0.3s ease;
+}
+
+.media-icons a:hover {
+    transform: scale(1.2);
+    color: #2696E9;
+}
+
+.slider-navigation {
+    z-index: 1;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.slider-navigation .nav-btn {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: transform 0.3s ease;
+}
+
+.slider-navigation .nav-btn.active {
+    background: #2696E9;
+}
+
+.slider-navigation .nav-btn:hover {
+    transform: scale(1.2);
+}
+
+.video-slide {
+    position: absolute;
+    width: 100%;
+    clip-path: circle(0% at 0 50%);
+}
+
+.video-slide.active {
+    clip-path: circle(150% at 0 50%);
+    transition: clip-path 2s ease;
+}

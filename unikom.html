@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About UNIKOM & PT Clorine Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .header__logo {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header__logo {
+                display: flex;
+                align-items: center;
+                /* Sejajarkan secara vertikal */
+                text-decoration: none;
+                /* Hilangkan garis bawah pada link */
+                color: white;
+                /* Warna teks */
+            }
+            .header__logo-img {
+                max-height: 50px;
+                /* Sesuaikan tinggi logo */
+                margin-right: 2px;
+                /* Jarak antara logo dan teks */
+            }
+            .header__logo-text {
+                font-size: 25px;
+                font-family: 'Clicker Script', cursive;
+                /* Sesuaikan ukuran teks */
+            }
+        }
+        /* Gaya umum untuk ikon */
+        
+        .social-ikon {
+            display: none;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .social-ikon {
+                display: flex;
+                /* Membuat elemen sejajar horizontal */
+                gap: 15px;
+                /* Jarak antar ikon */
+            }
+            .social-icone {
+                /* Warna awal ikon */
+                font-size: 21px;
+                /* Ukuran ikon */
+                text-decoration: none;
+                /* Hilangkan garis bawah (untuk tautan) */
+                transition: color 0.3s ease;
+                /* Animasi perubahan warna */
+            }
+            /* Gaya saat di-hover */
+        }
+        
+        .social-icons {
+            position: absolute;
+            /* Menggunakan absolute agar posisi tetap */
+            top: 40.3%;
+            /* Posisi vertikal dari atas */
+            left: 20px;
+            /* Posisi horizontal di sisi kiri */
+            transform: translateY(-50%);
+            /* Menjaga posisi vertikal tetap di tengah */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            /* Menempatkan di atas elemen lainnya */
+        }
+        /* Styling untuk ikon sosial */
+        
+        .social-icon {
+            margin: 6px 0;
+            /* Jarak antar ikon sosial */
+            font-size: 2em;
+            /* Ukuran ikon */
+            text-decoration: none;
+            /* Menghilangkan underline */
+            transition: transform 0.3s ease, color 0.3s ease;
+            /* Warna ikon sosial default */
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+            /* Warna hover bisa ditambahkan di sini jika diperlukan */
+        }
+        
+        @media screen and (max-width: 768px) {
+            .social-icons,
+            .social-icon {
+                display: none;
+            }
+        }
+        
+        main {
+            padding: 4rem 2rem;
+        }
+        
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 4rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .content {
+            flex: 1;
+            max-width: 600px;
+            padding: 1rem;
+            text-align: justify;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .content:hover {
+            transform: translateY(-10px);
+        }
+        
+        .image {
+            flex: 1;
+            max-width: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .image img:hover {
+            transform: scale(1.05);
+        }
+        
+        h2 {
+            color: #111;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            color: #222;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .heading {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #3c0782, #4682B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #334;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        /* Responsive Design */
+        
+        @media (max-width: 768px) {
+            /* Gambar akan berada di atas teks */
+            .content,
+            .image {
+                flex-basis: 100%;
+                text-align: center;
+            }
+            .image img {
+                margin-bottom: 1rem;
+            }
+            /* Membuat margin antara gambar dan teks pada layar kecil */
+            section {
+                flex-direction: column;
+                align-items: center;
+                gap: 3rem;
+            }
+            .heading {
+                font-size: 1.3rem;
+            }
+            .content p {
+                text-align: left;
+                font-size: 1.1rem;
+            }
+            .quote.s {
+                text-align: center;
+            }
+        }
+        
+        .call-to-action {
+            background: linear-gradient(90deg, #3c0782, #690ce1);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+        
+        .call-to-action img {
+            text-align: center;
+            width: 30%;
+            height: auto;
+            background-color: white;
+            border-radius: 15px;
+        }
+        
+        .call-to-action h2 {
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .call-to-action p {
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .call-to-action:hover {
+            background-color: #3a087d;
+        }
+        
+        .cta-button {
+            background-color: white;
+            color: #4b0e9b;
+            border: 2px solid #4b0e9b;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: inline-block;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #4b0e9b;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .call-to-action h2 {
+                font-size: 1.1em;
+            }
+            .call-to-action p {
+                font-size: 1em;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+
+        <a href="#" class="header__logo" style="background: linear-gradient(90deg, #3c0782, #4682B4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">
+            <img src="logo.png" alt="Logo" class="header__logo-img">
+            <span class="header__logo-text">Syafiq</span>
+            <div class="social-ikon" style="margin-right: -60px;">
+                <a href="https://instagram.com" target="_blank" class="social-icone" style="color:#e4405eda; text-decoration: none; font-size: 1.5rem;" onmouseover="this.style.background='linear-gradient(45deg, #e7af16, #fa7e1e, #d62976, #962fbf, #4f5bd5)';
+                             this.style.webkitBackgroundClip='text'; 
+                             this.style.webkitTextFillColor='transparent';" onmouseout="this.style.background='none';
+                            this.style.webkitBackgroundClip='initial'; 
+                            this.style.webkitTextFillColor='initial';">
+                    <i class='bx bxl-instagram'></i>
+                </a>
+
+                <a href="https://whatsapp.com" target="_blank" class="social-icone" style="color:#075e54cf;" onmouseover="this.style.color='#1da90a';" onmouseout="this.style.color='#075e54cf';">
+                    <i class='bx bxl-whatsapp'></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" class="social-icone" style="color:#1351d7d7;" onmouseover="this.style.color='#3B5998';" onmouseout="this.style.color='#1351d7d7';">
+                    <i class='bx bxl-facebook'></i>
+                </a>
+            </div>
+
+        </a>
+
+
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+        <nav class="nav" id="nav-menu">
+            <div class="nav__content bd-grid">
+                <a href="#" class="nav__perfil">
+                    <div class="nav__img">
+                        <img src="logo1.jpg" alt="">
+                    </div>
+                    <div class="texts">
+                        <span class="nav__name" style="background: linear-gradient(90deg, #4b0e9b, #4682B4);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;">Syafiq</span>
+                    </div>
+                </a>
+                <div class="nav__menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="index.html" class="nav__link active" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">Home</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="profil.html" class="nav__link active" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">Profil</a>
+
+
+                        </li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link dropdown__link" style="color: black;" onmouseover="this.style.color='#4b0e9b';" onmouseout="this.style.color='black';">About <i class="bx bx-chevron-down dropdown__icon"></i></a>
+
+                            <ul class="dropdown__menu">
+                                <li class="dropdown__item"><a href="https://syafiq-host.github.io/-web/" class="nav__link" style="color: black;">About me</a></li>
+                                <li class="dropdown__item"><a href="profil.html#schedule" class="nav__link" style="color: black;">Keberangkatan</a></li>
+                                <li class="dropdown__item"><a href="#unikom" class="nav__link" style="color: black;">UNIKOM AND PT CALORINE</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- About UNIKOM -->
+        <section id="unikom">
+
+            <div class="content">
+                <h2 class="heading">Universitas Komputer Indonesia (UNIKOM)</h2>
+                <p>Universitas Komputer Indonesia (UNIKOM) adalah lembaga pendidikan tinggi yang berfokus pada bidang komputer dan teknologi informasi. UNIKOM telah berkomitmen untuk menjadi pusat pendidikan terbaik di Indonesia, dengan menyediakan berbagai
+                    program studi yang relevan dengan perkembangan teknologi global.</p>
+                <p>UNIKOM memiliki visi untuk menciptakan lulusan yang tidak hanya kompeten dalam bidang ilmu komputer, tetapi juga mampu berinovasi dan beradaptasi dengan cepat di dunia industri yang terus berkembang. Kampus yang modern, fasilitas yang
+                    lengkap, dan pengajaran yang berbasis teknologi membuat UNIKOM menjadi pilihan terbaik bagi calon mahasiswa yang ingin mengembangkan karir di dunia digital.</p>
+            </div>
+            <div class="image">
+                <img src="https://via.placeholder.com/500x300" alt="UNIKOM University">
+            </div>
+        </section>
+
+        <!-- About PT Clorine Digital -->
+        <section>
+            <div class="image">
+                <img src="https://via.placeholder.com/500x300" alt="PT Clorine Digital">
+            </div>
+            <div class="content">
+                <h2 class="heading">PT Clorine Digital</h2>
+                <p>PT Clorine Digital adalah perusahaan teknologi yang bergerak di bidang pengembangan perangkat lunak dan digital marketing. Perusahaan ini berdedikasi untuk memberikan solusi digital inovatif bagi berbagai jenis bisnis, dari startup hingga
+                    perusahaan besar.</p>
+                <p>Dengan tim yang berpengalaman dan fokus pada pengembangan perangkat lunak berkualitas tinggi, PT Clorine Digital membantu klien dalam mengoptimalkan proses bisnis mereka melalui aplikasi dan website yang efisien dan fungsional. PT Clorine
+                    Digital juga menawarkan layanan digital marketing yang membantu meningkatkan visibilitas online dan memperluas audiens bisnis melalui strategi pemasaran yang efektif.</p>
+            </div>
+        </section>
+
+        <!-- Vision and Mission Section -->
+        <section>
+            <div class="content">
+                <h2 class="heading">Tujuan</h2>
+                <p>Tujuan dari kunjungan industri ini adalah untuk memberikan wawasan yang lebih mendalam mengenai dunia industri teknologi dan pendidikan kepada siswa-siswa SMK Informatika Al Irsyad Cirebon. Para siswa akan mengunjungi perusahaan-perusahaan
+                    ternama dan tempat inovasi, seperti PT Clorine Digital, Universitas UNIKOM, dan Cihampelas Walk di Bandung, untuk melihat langsung bagaimana teknologi digunakan dalam dunia nyata serta mendapatkan inspirasi untuk mengembangkan keterampilan
+                    mereka.
+                </p>
+                <p class="quote s">"Sekolah IT Berkarakter Islami"</p>
+
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="call-to-action">
+            <img src="smk.png" alt="">
+            <h2>SMK Informatika Al Irsyad</h2>
+            <p>SMK Informatika Al Irsyad adalah tempat yang penuh semangat, inovasi, dan kolaborasi. Di sini, siswa tidak hanya belajar teknologi, tetapi juga diajarkan nilai-nilai kemandirian, kreativitas, dan kerja tim. Kami percaya bahwa dengan pendidikan
+                yang berkualitas dan pengalaman langsung, para siswa dapat menghadapi tantangan dunia digital dengan percaya diri dan sukses!</p>
+
+            <a href="https://smkinformatika-crbn.sch.id/" class="cta-button">DAFTAR SEKARANG </a>
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
